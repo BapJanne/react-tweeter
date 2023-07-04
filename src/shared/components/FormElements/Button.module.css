@@ -1,0 +1,26 @@
+.button {
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #1d9bf0;
+  color: white;
+  border: none;
+}
+
+.buttonSubmit {
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.buttonNav {
+  width: 90px;
+  font-size: 16px;
+}
+
+.buttonSubmit:disabled {
+  background-color: #8ecdf7;
+}
+
+.buttonNewTweet {
+  margin-top: 500px;
+}

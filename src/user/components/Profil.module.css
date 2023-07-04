@@ -1,0 +1,7 @@
+.profilInfos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.5px 1.5px 2px;
+}

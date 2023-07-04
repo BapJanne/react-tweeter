@@ -1,0 +1,37 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2rem;
+  width: 80%;
+}
+
+/* .authForm__header {
+} */
+
+.authForm__inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  border: none;
+  padding: 5px 0;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+}
+
+input:focus {
+  outline: none;
+}
+
+small {
+  position: absolute;
+  margin-top: 35px;
+}
+
+@media screen and (min-width: 700px) {
+}

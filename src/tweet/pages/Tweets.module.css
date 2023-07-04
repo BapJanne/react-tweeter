@@ -1,0 +1,14 @@
+.tweetsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin: 0;
+}
+
+@media screen and (min-width: 700px) {
+  .tweetsContainer {
+    width: 70vw;
+  }
+}

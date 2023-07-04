@@ -1,0 +1,76 @@
+.formContainer {
+  display: none;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.inputContainerNewTweet {
+  height: 30vh;
+  margin-top: 5rem;
+}
+
+textarea {
+  height: 10vh;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.formAddTweet {
+  width: 80%;
+  margin: auto;
+}
+
+.textarea {
+  resize: none;
+}
+
+.textarea:active,
+.textarea {
+  box-shadow: none;
+  outline: none;
+}
+
+@media screen and (min-width: 700px) {
+  .formContainer {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.5px 1.5px 2px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+  }
+
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+    align-content: space-between;
+  }
+
+  .inputContainer textarea {
+    height: 10vh;
+    width: 50vw;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .inputContainerNewTweet {
+    height: 25vh;
+    margin-top: 5rem;
+  }
+
+  .small {
+    position: absolute;
+    margin-top: 2rem;
+    font-size: 16px;
+  }
+}

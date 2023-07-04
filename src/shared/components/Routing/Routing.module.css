@@ -1,0 +1,18 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+}
+
+.appContainer {
+  display: block;
+}
+
+@media screen and (min-width: 700px) {
+  .main {
+    width: 70vw;
+  }
+
+  .appContainer {
+    display: flex;
+  }
+}
