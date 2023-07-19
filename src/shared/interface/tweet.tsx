@@ -1,6 +1,7 @@
 export interface tweetType {
-  userId: string;
-  message: string;
+  authorName: string;
+  tweetContent: string;
   rts: string[];
   likes: string[];
+  id: string;
 }

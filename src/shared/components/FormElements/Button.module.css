@@ -7,7 +7,7 @@
 }
 
 .buttonSubmit {
-  width: 100px;
+  max-width: 200px;
   font-size: 16px;
   font-weight: 600;
 }

@@ -10,6 +10,9 @@
 @media screen and (min-width: 700px) {
   .main {
     width: 70vw;
+    position: fixed;
+    left: 30vw;
+    padding: 0;
   }
 
   .appContainer {

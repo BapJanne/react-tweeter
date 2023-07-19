@@ -4,14 +4,15 @@ import Tweets from "../../../tweet/pages/Tweets";
 import Navigation from "../Navigation/Navigation";
 import NewTweetPage from "../../../tweet/pages/NewTweetPage";
 import AuthPage from "../../../user/pages/AuthPage";
+import UpdateTweet from "../../../tweet/pages/UpdateTweet";
 import { AuthContext } from "../../context/auth-context";
-import { ThemeContext } from "../../context/theme-context";
+// import { ThemeContext } from "../../context/theme-context";
 import UserProfil from "../../../user/pages/UserProfil";
 
 import classes from "./Routing.module.css";
 
 const Routing = () => {
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
   const auth = useContext(AuthContext);
 
   let routes;
@@ -20,15 +21,20 @@ const Routing = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Tweets />} />
-        <Route path="/:userId" element={<UserProfil />} />
-        <Route path="/:userId/:tweetId" />
+        <Route path="/profil/:userName" element={<UserProfil />} />
+        {/* <Route path="/:userId/:tweetId" /> */}
         <Route path="/newTweet" element={<NewTweetPage />} />
+        <Route
+          path="/updateTweet/:tid"
+          element={<UpdateTweet where="update" />}
+        />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
         <Route path="/" element={<Tweets />} />
+        <Route path="/profil/:userName" element={<UserProfil />} />
         <Route path="/auth" element={<AuthPage />} />
       </Routes>
     );

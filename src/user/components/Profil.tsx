@@ -1,16 +1,45 @@
-import { userType } from "../../shared/interface/userType";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 import classes from "./Profil.module.css";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
-interface Props {
-  userInfos: userType;
-}
+const Profil = () => {
+  const [userInfos, setUserInfos] = useState<any>();
+  const { sendRequest, isLoading, error, clearError } = useHttpClient();
+  const userName = useParams().userName;
 
-const Profil = (props: Props) => {
+  useEffect(() => {
+    const fetchUserInfos = async () => {
+      try {
+        const responseData = await sendRequest(
+          `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/users/${userName}`
+        );
+
+        setUserInfos(responseData.userInfos);
+      } catch (err) {
+        //Comment to avoid typescript error
+      }
+    };
+    fetchUserInfos();
+  }, [sendRequest, userName]);
+
   return (
-    <div className={classes.profilInfos}>
-      <div>Profil of : {props.userInfos.userId}</div>
-    </div>
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <div className={classes.profilInfos}>
+          {!isLoading && userInfos && (
+            <div>Profil of : {userInfos.userName}</div>
+          )}{" "}
+          {!isLoading && !userInfos && <p>There is no infos for this user</p>}
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

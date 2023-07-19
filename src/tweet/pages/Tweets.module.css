@@ -5,10 +5,35 @@
   align-items: center;
   width: 100vw;
   margin: 0;
+  padding: 0;
+  margin-bottom: 10vh;
+  overflow-y: auto;
 }
 
-@media screen and (min-width: 700px) {
+.twitterLogoHeader {
+  width: 100%;
+  position: fixed;
+  height: 8vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 3px;
+  background-color: white;
+}
+
+.twitterLogoHeader img {
+  width: 50px;
+}
+
+@media screen and (min-width: 768px) {
   .tweetsContainer {
     width: 70vw;
+    margin: auto;
+    padding: 0;
+  }
+
+  .twitterLogoHeader {
+    display: none;
   }
 }

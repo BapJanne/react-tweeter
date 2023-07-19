@@ -1,40 +1,86 @@
-import { useContext, useState, useEffect } from "react";
-import { tweetType } from "../../shared/interface/tweet";
+import React, { useContext, useState, useEffect } from "react";
 
 import classes from "./TweetItem.module.css";
 import { AuthContext } from "../../shared/context/auth-context";
+import { Link } from "react-router-dom";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import TweetMenu from "./TweetMenu";
+import MenuTweetModal from "../../shared/components/UIElements/MenuTweetModal";
+import { ReactComponent as RtSvg } from "../../images/retweetSVG.svg";
 
-const TweetItem = (props: tweetType) => {
+const TweetItem = (props: any) => {
   const [isTweetLiked, setIsTweetLiked] = useState(false);
+  const [isTweetAlreadyLiked, setIsTweetAlreadyLiked] = useState(false);
   const [isTweetRt, setIsTweetRt] = useState(false);
+  const [showTweetMenu, setShowTweetMenu] = useState(false);
+  const { sendRequest, error, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
 
-  const toggleLikeTweetHandler = () => {
+  const onClickMenuHandler = () => {
+    setShowTweetMenu(!showTweetMenu);
+  };
+
+  const likeTweetHandler = async () => {
     if (auth.isLoggedIn) {
-      setIsTweetLiked(!isTweetLiked);
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/tweets/likes/${
+          props.id
+        }`,
+        "PATCH",
+        JSON.stringify({
+          userId: auth.userId,
+        }),
+        {
+          Authorization: "Bearer " + auth.token,
+          "Content-Type": "application/json",
+        }
+      );
+
+      if (responseData.tweet.likes.includes(auth.userId)) {
+        setIsTweetLiked(true);
+        setIsTweetAlreadyLiked(false);
+      } else {
+        setIsTweetLiked(false);
+      }
+
+      props.onAddLike();
     }
   };
 
-  const toggleRtTweetHandler = () => {
+  const rtTweetHandler = async () => {
     if (auth.isLoggedIn) {
-      setIsTweetRt(!isTweetRt);
+      await sendRequest(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/tweets/rts/${props.id}`,
+        "PATCH",
+        JSON.stringify({
+          userId: auth.userId,
+        }),
+        {
+          Authorization: "Bearer " + auth.token,
+          "Content-Type": "application/json",
+        }
+      );
+      props.onAddRt();
     }
   };
 
   useEffect(() => {
     const isUserLikedTweet = props.likes?.find(
-      (userId) => userId === auth.userId
+      (userId: string) => userId === auth.userId
     );
 
-    const isUserRtTweet = props.rts?.find((userId) => userId === auth.userId);
+    const isUserRtTweet = props.rts?.find(
+      (userId: string) => userId === auth.userId
+    );
 
-    if (isUserLikedTweet && auth.userId.length > 0) {
-      setIsTweetLiked(true);
+    if (isUserLikedTweet && auth.isLoggedIn) {
+      setIsTweetAlreadyLiked(true);
     } else {
-      setIsTweetLiked(false);
+      setIsTweetAlreadyLiked(false);
     }
 
-    if (isUserRtTweet && auth.userId.length > 0) {
+    if (isUserRtTweet && auth.isLoggedIn) {
       setIsTweetRt(true);
     } else {
       setIsTweetRt(false);
@@ -42,22 +88,74 @@ const TweetItem = (props: tweetType) => {
   }, [auth, props]);
 
   return (
-    <li className={classes.tweetItem}>
-      <header className={classes.tweetItem__header}>
-        <div className={classes.tweetItem__userId}>{`@${props.userId}`}</div>
-      </header>
-      <p className={classes.tweetItem__para}>{props.message}</p>
-      <div className={classes.communityContainer}>
-        <div
-          className={`${classes.likes} ${isTweetRt && classes.tweetLiked}`}
-          onClick={toggleRtTweetHandler}
-        >{`rts : ${props.rts.length}`}</div>
-        <div
-          className={`${classes.likes} ${isTweetLiked && classes.tweetLiked}`}
-          onClick={toggleLikeTweetHandler}
-        >{`likes : ${props.likes.length}`}</div>
-      </div>
-    </li>
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      <MenuTweetModal
+        show={showTweetMenu}
+        onCancel={onClickMenuHandler}
+        tweetId={props.id}
+        onDeleteTweet={props.onDeleteTweet}
+      />
+      <li className={classes.tweetItem}>
+        <header className={classes.tweetItem__header}>
+          <Link
+            to={`/profil/${props.author}`}
+            className={classes.tweetItem__userId}
+            style={{ textDecoration: "none" }}
+          >{`@${props.author}`}</Link>
+          {auth.userName === props.author && (
+            <TweetMenu onClickMenu={onClickMenuHandler} />
+          )}
+        </header>
+        <p className={classes.tweetItem__para}>{props.tweetContent}</p>
+        <div className={classes.communityContainer}>
+          <div
+            className={`${classes.rtButton} ${isTweetRt && classes.tweetLiked}`}
+            onClick={rtTweetHandler}
+          >
+            <div className={classes.rtBg}>
+              <div className={classes.rtIcon}>
+                <RtSvg />
+              </div>
+            </div>
+            <div
+              className={`${classes.rtAmount} ${
+                isTweetRt && classes.rtAmountIsRted
+              }`}
+            >
+              {props.rts.length}
+            </div>
+          </div>
+          <div
+            className={`${classes.likesButton} ${
+              isTweetLiked && classes.tweetLiked
+            }`}
+            onClick={likeTweetHandler}
+          >
+            <div className={classes.heartBg}>
+              <div
+                className={`${classes.heartIcon} ${
+                  isTweetLiked && auth.isLoggedIn && classes.tweetLiked
+                } ${
+                  isTweetAlreadyLiked &&
+                  !isTweetLiked &&
+                  classes.tweetAlreadyLiked
+                }`}
+              ></div>
+            </div>
+            <div
+              className={`${
+                isTweetLiked && auth.isLoggedIn
+                  ? classes.likesAmountIsLiked
+                  : classes.likesAmount
+              } ${isTweetAlreadyLiked && classes.likesAmountIsLiked}`}
+            >
+              {props.likes.length}
+            </div>
+          </div>
+        </div>
+      </li>
+    </React.Fragment>
   );
 };
 

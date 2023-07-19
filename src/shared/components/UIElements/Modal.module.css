@@ -1,0 +1,110 @@
+.modal {
+  z-index: 60;
+  position: fixed;
+  top: 22vh;
+  left: 10%;
+  width: 80%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.MenuTweetModal {
+  background-color: rgb(230, 225, 225);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px;
+  position: fixed;
+  bottom: 0;
+  height: 15vh;
+  z-index: 60;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: red;
+  color: white;
+  margin: 0;
+}
+
+.modal__header h2 {
+  margin: 0.5rem;
+}
+
+.modal__content {
+  padding: 1rem 0.5rem;
+}
+
+.modal__footer {
+  padding: 1rem 0.5rem;
+}
+
+.modal__footer button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+
+.modalEnter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modalEnterActive {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.modalExit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modalExitActive {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 200ms;
+}
+
+.modalBottomEnter {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+.modalBottomEnterActive {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.modalBottomExit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modalBottomExitActive {
+  transform: translateY(10rem);
+  opacity: 0;
+  transition: all 200ms;
+}

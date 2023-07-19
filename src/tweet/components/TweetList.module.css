@@ -6,4 +6,33 @@
   max-width: 50rem;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10vh;
+}
+
+.tweetListHome {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 50rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10vh;
+  margin-top: 8vh;
+}
+
+.noTweetContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 82vh;
+}
+
+@media screen and (min-width: 768px) {
+  .tweetList {
+    margin: auto;
+  }
+
+  .tweetListHome {
+    margin: 0;
+  }
 }

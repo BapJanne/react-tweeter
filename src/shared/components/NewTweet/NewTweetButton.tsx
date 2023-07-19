@@ -11,12 +11,12 @@ const NewTweetButton = () => {
     <React.Fragment>
       {!auth.isLoggedIn && (
         <NavLink to="/auth" className={classes.newTweet}>
-          New tweet
+          +
         </NavLink>
       )}
       {auth.isLoggedIn && (
         <NavLink to="/newTweet" className={classes.newTweet}>
-          New tweet
+          +
         </NavLink>
       )}
     </React.Fragment>

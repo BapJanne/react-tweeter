@@ -3,17 +3,28 @@
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  margin-top: 2rem;
+  padding-top: 2rem;
   width: 80%;
+  max-width: 500px;
 }
-
-/* .authForm__header {
-} */
 
 .authForm__inputContainer {
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+}
+
+.buttonContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+}
+
+.buttonContainer button {
+  margin-top: 10px;
 }
 
 input {
@@ -33,5 +44,14 @@ small {
   margin-top: 35px;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
+  .buttonContainer {
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .buttonContainer button {
+    margin-left: 10px;
+  }
 }
