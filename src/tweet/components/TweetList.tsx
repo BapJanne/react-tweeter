@@ -69,19 +69,20 @@ const TweetList = (props: { where: string }) => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {isLoading && userTweets.length === 0 && !error && <LoadingSpinner />}
-      {!isLoading && userTweets.length === 0 && (
+      {/* {!isLoading && userTweets.length === 0 && !error && <LoadingSpinner />} */}
+      {!isLoading && <LoadingSpinner />}
+      {/* {!isLoading && userTweets.length === 0 && (
         <div className={classes.noTweetContainer}>
           <p>There is no tweet</p>
         </div>
-      )}
+      )} */}
 
       <ul
         className={`${
           props.where !== "home" ? classes.tweetList : classes.tweetListHome
         }`}
       >
-        {content}
+        {/* {content} */}
       </ul>
     </React.Fragment>
   );

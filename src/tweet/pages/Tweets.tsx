@@ -8,17 +8,15 @@ import twitterLogo from "../../images/twiterLogo.png";
 
 const Tweets = () => {
   return (
-    <React.Fragment>
-      <section className={classes.tweetsContainer}>
-        <React.Fragment>
-          <div className={classes.twitterLogoHeader}>
-            <img src={twitterLogo} />
-          </div>
-          <TweetList where="home" />
-          <NewTweetButton />
-        </React.Fragment>
-      </section>
-    </React.Fragment>
+    <section className={classes.tweetsContainer}>
+      <React.Fragment>
+        <div className={classes.twitterLogoHeader}>
+          <img src={twitterLogo} />
+        </div>
+        <TweetList where="home" />
+        <NewTweetButton />
+      </React.Fragment>
+    </section>
   );
 };
 

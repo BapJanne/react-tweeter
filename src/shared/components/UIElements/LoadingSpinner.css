@@ -12,7 +12,7 @@
 }
 
 .loadingContainer {
-  height: 100vh;
+  height: 82vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,4 +114,10 @@
 }
 .ldio-iobxe2pz7u div {
   box-sizing: content-box;
+}
+
+@media screen and (min-width: 768px) {
+  .loadingContainer {
+    height: 100vh;
+  }
 }
