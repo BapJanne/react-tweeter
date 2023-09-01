@@ -23,7 +23,7 @@ const MobileNavigation = () => {
               isActive ? classes.activeNavLink : classes.nav_link
             }
           >
-            Home
+            Accueil
           </NavLink>
         </li>
         {auth.isLoggedIn && (
@@ -46,7 +46,7 @@ const MobileNavigation = () => {
                 isActive ? classes.activeNavLink : classes.nav_link
               }
             >
-              Log In
+              Se connecter
             </NavLink>
           </li>
         )}
@@ -70,7 +70,7 @@ const MobileNavigation = () => {
                 nav("/");
               }}
             >
-              Log out
+              Se déconnecter
             </Button>
           </li>
         )}

@@ -90,18 +90,19 @@ const AuthForm = () => {
           onSubmit={handleSubmit(submitHandler)}
         >
           <header className={classes.authForm__header}>
-            {isLoginMode ? "LOGIN" : "SIGN UP"}
+            {isLoginMode ? "SE CONNECTER" : "CREER UN COMPTE"}
           </header>
           {!isLoginMode && (
             <div className={classes.authForm__inputContainer}>
               <input
-                placeholder="Username"
+                placeholder="Nom d'utilisateur"
                 id="userName"
                 {...register("userName", {
-                  required: "User name is required",
+                  required: "Un nom d'utilisateur est requis",
                   maxLength: {
                     value: 20,
-                    message: "The user name must not exceed 20 characters",
+                    message:
+                      "Le nom d'utilisateur ne doit pas dépasser 20 caractères",
                   },
                 })}
               />
@@ -115,7 +116,7 @@ const AuthForm = () => {
             <input
               placeholder="Email"
               {...register("email", {
-                required: "Email is required",
+                required: "Un email est requis",
                 pattern: {
                   value:
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -131,18 +132,18 @@ const AuthForm = () => {
           </div>
           <div className={classes.authForm__inputContainer}>
             <input
-              placeholder="Password"
+              placeholder="Mot de passe"
               id="password"
               type="password"
               {...register("password", {
-                required: "Password is required",
+                required: "Le mot de passe est requis",
                 minLength: {
                   value: 6,
-                  message: "The password must be at least 6 character",
+                  message: "Le mot de passe doit être d'au moins 6 caractères",
                 },
                 maxLength: {
                   value: 20,
-                  message: "Password must not exceed 20 characters",
+                  message: "Le mot de passe ne doit pas dépasser 20 caractères",
                 },
               })}
             />
@@ -153,10 +154,17 @@ const AuthForm = () => {
 
           <div className={classes.buttonContainer}>
             <Button type="submit" disabled={!formState.isValid}>
-              {isLoginMode ? "Log in" : "Sign up"}
+              {isLoginMode ? "Se connecter" : "Créer compte"}
             </Button>
-            <Button onClick={switchModeHandler} type="button">
-              Switch to {isLoginMode ? "SIGN UP" : "LOGIN"}
+            <Button onClick={switchModeHandler} type="submit">
+              {isLoginMode ? (
+                "Créer un compte"
+              ) : (
+                <div>
+                  <div>Déja un compte?</div>
+                  <div>Se connecter</div>
+                </div>
+              )}
             </Button>
           </div>
         </form>
