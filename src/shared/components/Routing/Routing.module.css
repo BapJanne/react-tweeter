@@ -7,7 +7,7 @@
   display: block;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   .main {
     width: 70vw;
     position: fixed;
