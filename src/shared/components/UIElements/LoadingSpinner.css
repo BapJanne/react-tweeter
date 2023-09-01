@@ -12,6 +12,7 @@
 }
 
 .loadingContainer {
+  margin-top: 8vh;
   height: 82vh;
   display: flex;
   justify-content: center;
@@ -118,6 +119,7 @@
 
 @media screen and (min-width: 768px) {
   .loadingContainer {
+    margin: 0;
     height: 100vh;
   }
 }
