@@ -5,9 +5,9 @@ const Button = (props: any) => {
     <button
       type={props.type}
       disabled={props.disabled}
-      className={`${classes.button} ${props.className} ${
+      className={`${classes.button} ${
         props.type === "submit" ? classes.buttonSubmit : classes.buttonNav
-      }`}
+      } ${props.type === "button" && classes.buttonChangeMode}`}
       onClick={props.onClick}
     >
       {props.children}

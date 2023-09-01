@@ -24,3 +24,8 @@
 .buttonNewTweet {
   margin-top: 500px;
 }
+
+.buttonChangeMode {
+  width: auto;
+  font-weight: 600;
+}

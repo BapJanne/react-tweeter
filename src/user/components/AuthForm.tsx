@@ -156,11 +156,11 @@ const AuthForm = () => {
             <Button type="submit" disabled={!formState.isValid}>
               {isLoginMode ? "Se connecter" : "Créer compte"}
             </Button>
-            <Button onClick={switchModeHandler} type="submit">
+            <Button onClick={switchModeHandler} type="button" where={auth}>
               {isLoginMode ? (
                 "Créer un compte"
               ) : (
-                <div>
+                <div className={classes.buttonSwitchMode}>
                   <div>Déja un compte?</div>
                   <div>Se connecter</div>
                 </div>
